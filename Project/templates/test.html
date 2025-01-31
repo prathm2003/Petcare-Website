@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pet Care Testimonials</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, p {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #6b8e23;
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        /* Logo Styles */
+        .logo {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .logo img {
+            width: 170px;
+            height: 80px;
+            margin-top: -10px;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+        }
+
+        /* User Info Dropdown */
+        .user-info {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-name {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #333;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 15px;
+            text-align: left;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .user-info:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Testimonials Section */
+        .testimonials-page {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .testimonials-page h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .testimonial-card {
+            display: inline-block;
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card h3 {
+            margin: 10px 0;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .testimonial-card span {
+            font-weight: bold;
+            color: #6b8e23;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="/static/logo.png" alt="Pet Care Logo">
+        </div>
+        <h1>What Our Clients Say</h1>
+        <p>Your Pet's Happiness, Our Mission</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+        <div class="user-info">
+            {% if user.is_authenticated %}
+            <span class="user-name">Hello, {{ user.username }}</span>
+            {% endif %}
+            <div class="dropdown-content">
+                <a href="#profile">Profile</a>
+                <a href="{% url 'logout1' %}">Log Out</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-page">
+        <h2>Client Testimonials</h2>
+
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+            <img src="/static/testimonial-1.jpg" alt="Emily">
+            <h3>Emily Johnson</h3>
+            <p>"Best dog walking service ever! My dog is always excited for his daily walks."</p>
+            <span>- Happy Client</span>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+            <img src="/static/testimonial-2.jpg" alt="Robert">
+            <h3>Robert Brown</h3>
+            <p>"My cat always comes back happy and well-groomed. Fantastic grooming service!"</p>
+            <span>- Satisfied Pet Owner</span>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+            <img src="/static/testimonial-4.jpg" alt="Lisa">
+            <h3>Lisa Kirk</h3>
+            <p>"Their veterinary care is top-notch. They saved my dog’s life with their quick response."</p>
+            <span>- Grateful Pet Parent</span>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card">
+            <img src="/static/testimonial-3.jpg" alt="Sandra">
+            <h3>Sandra Miller</h3>
+            <p>"The pet boarding service is amazing. I felt at ease knowing my pets were in great hands."</p>
+            <span>- Loyal Customer</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 Pet Care Services. All Rights Reserved.</p>
+        <p>Email: contact@petcare.com | Phone: (123) 456-7890</p>
+    </footer>
+</body>
+
+</html>

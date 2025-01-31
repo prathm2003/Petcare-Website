@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Contact Us - Pet Care Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, p {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #6b8e23;
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        .logo {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .logo img {
+            width: 170px;
+            height: 80px;
+            margin-top: -10px; /* Adjust height automatically to keep the aspect ratio */
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+        }
+
+        /* User Info Dropdown */
+        .user-info {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-name {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #333;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 15px;
+            text-align: left;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .user-info:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact-page {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .contact-page h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: #6b8e23;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: #557a1d;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+        }
+
+        .map-container {
+            margin-top: 30px;
+            height: 400px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="/static/logo.png" alt="Pet Care Logo">
+        </div>
+        <h1>Contact Us</h1>
+        <p>We'd Love to Hear from You</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+        <div class="user-info">
+            {% if user.is_authenticated %}
+            <span class="user-name">Hello, {{ user.username }}</span>
+            {% endif %}
+            <div class="dropdown-content">
+                <a href="#profile">Profile</a>
+                <a href="{% url 'logout1' %}">Log Out</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-page">
+        <h2>Get in Touch</h2>
+
+        <!-- Contact Form -->
+        <form class="contact-form" action="{% url 'submit_contact_form' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message">
+        </form>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <p><strong>Address:</strong> 123 Pet Lane, Pet City, PC 12345</p>
+            <p><strong>Email:</strong> contact@petcare.com</p>
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2351883419646!2d-122.4049866846816!3d37.78347167975999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064d53e5c79%3A0x8c1e3f30a0c1c021!2s123%20Pet%20Lane%2C%20San%20Francisco%2C%20CA%2094155!5e0!3m2!1sen!2sus!4v1639672364166!5m2!1sen!2sus" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Pet Care Services. All Rights Reserved.</p>
+        <p>Email: contact@petcare.com | Phone: (123) 456-7890</p>
+    </footer>
+
+</body>
+
+</html>

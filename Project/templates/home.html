@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pet Care Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, p {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #6b8e23;
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        /* Logo Styles */
+        .logo {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .logo img {
+            width: 170px;
+            height: 80px;
+            margin-top: -10px;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+        }
+
+        /* User Info Dropdown */
+        .user-info {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-name {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #333;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 15px;
+            text-align: left;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .user-info:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('/static/hero.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.826);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .services h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .service-card {
+            display: inline-block;
+            width: 250px;
+            padding: 20px;
+            margin: 15px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: auto;
+            max-height: 200px; /* Adjust based on desired size */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .service-card h3 {
+            margin-top: 15px;
+            font-size: 22px;
+        }
+
+        .service-card p {
+            margin: 10px 0;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #eee;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-card {
+            display: inline-block;
+            width: 250px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Carousel Styles */
+.carousel {
+    height: 580px; /* Adjust the height as needed */
+    overflow: hidden;
+}
+
+.carousel-inner, .carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container */
+}
+
+.carousel-caption {
+    bottom: 20px; /* Adjust based on your needs */
+}
+
+    /* Pricing Plan Styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header img {
+    border-radius: 0;
+    height: 200px; /* Adjust based on your design */
+    object-fit: cover;
+}
+
+.card-body ul {
+    padding: 0;
+}
+
+.card-body ul li {
+    border: 0;
+    font-size: 16px;
+}
+
+.card-footer .btn {
+    border-radius: 0;
+    font-size: 16px;
+    padding: 15px;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-secondary {
+    color: #6c757d !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+    /* Features Section Styles */
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 50%;
+}
+
+.feature-icon i {
+    font-size: 28px;
+}
+
+.img-fluid {
+    max-height: 400px;
+    object-fit: cover;
+}
+
+h1.display-4 {
+    font-size: 2.5rem;
+}
+
+h5 {
+    font-size: 1.125rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+.bg-primary {
+    background-color: #007bff !important;
+}
+
+.bg-success {
+    background-color: #28a745 !important;
+}
+
+.bg-warning {
+    background-color: #ffc107 !important;
+}
+
+.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="/static/logo.png" alt="Pet Care Logo">
+        </div>
+        <h1>Pet Care Services</h1>
+        <p>Your Pet, Our Priority</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+        <div class="user-info">
+            {% if user.is_authenticated %}
+            <span class="user-name">Hello, {{ user.username }}</span>
+            {% endif %}
+            <div class="dropdown-content">
+                <a href="#profile">Profile</a>
+                <a href="{% url 'logout1' %}">Log Out</a>
+            </div>
+        </div>
+    </nav>
+
+    
+    <!-- Carousel Start -->
+<div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <!-- First Slide -->
+        <div class="carousel-item active">
+            <img src="/static/carousel-1.jpg" class="d-block w-100" alt="Image 1">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                <div class="p-3" style="max-width: 900px;">
+                    <h3 class="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
+                    <h1 class="display-3 text-white mb-3">Keep Your Pet Happy</h1>
+                    <h5 class="text-white mb-3 d-none d-sm-block">Duo nonumy et dolor tempor no et. Diam sit diam sit diam erat</h5>
+                    <a href="#" class="btn btn-lg btn-primary mt-3 mt-md-4 px-4">Book Now</a>
+                    <a href="#" class="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <!-- Second Slide -->
+        <div class="carousel-item">
+            <img src="/static/carousel-2.jpg" class="d-block w-100" alt="Image 2">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                <div class="p-3" style="max-width: 900px;">
+                    <h3 class="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
+                    <h1 class="display-3 text-white mb-3">Pet Spa & Grooming</h1>
+                    <h5 class="text-white mb-3 d-none d-sm-block">Duo nonumy et dolor tempor no et. Diam sit diam sit diam erat</h5>
+                    <a href="#" class="btn btn-lg btn-primary mt-3 mt-md-4 px-4">Book Now</a>
+                    <a href="#" class="btn btn-lg btn-secondary mt-3 mt-md-4 px-4">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- Carousel End -->
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="service-card">
+            <img src="/static/service1.jpg" alt="Dog Walking" style="height: 160px;">
+            <h3>Dog Walking</h3>
+            <p>Daily exercise for your pet.</p>
+        </div>
+        <div class="service-card">
+            <img src="/static/service2.jpg" alt="Grooming">
+            <h3>Pet Grooming</h3>
+            <p>Make your pet look its best.</p>
+        </div>
+        <div class="service-card">
+            <img src="/static/service3.jpeg" alt="Veterinary Care" style="height: 140px;">
+            <h3>Veterinary Care</h3>
+            <p>Comprehensive health care for your pets.</p>
+        </div>
+        <div class="service-card">
+            <img src="/static/service4.jpg" alt="Dog Training">
+            <h3>Dog Training</h3>
+            <p>Proper training for your pets.</p>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div>
+            <h2>We Care for Your Pets</h2>
+            <p>Providing the best services for your furry friends.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Plan Start -->
+<div class="container-fluid bg-light pt-5 pb-4">
+    <div class="container py-5">
+        <div class="d-flex flex-column text-center mb-5">
+            <h2 class="text-secondary mb-3">Pricing Plan</h2>
+            <h1 class="display-4 m-0">Choose the <span class="text-primary">Best Price</span></h1>
+        </div>
+        <div class="row">
+            <!-- Basic Plan -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm text-center bg-white">
+                    <div class="card-header position-relative border-0 p-0 mb-4">
+                        <img class="card-img-top" src="/static/price-1.jpg" alt="Basic Plan">
+                        <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
+                            <h3 class="text-primary mb-3">Basic</h3>
+                            <h1 class="display-4 text-white mb-0">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>49
+                                <small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
+                            <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i><s style="color: red;">Spa & Grooming</s></li>
+                            <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i><s style="color: red;">Veterinary Medicine</s></li>
+                        </ul>
+                    </div>
+                    <div class="card-footer border-0 p-0">
+                        <a href="#" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Standard Plan -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm text-center bg-white">
+                    <div class="card-header position-relative border-0 p-0 mb-4">
+                        <img class="card-img-top" src="/static/price-2.jpg" alt="Standard Plan">
+                        <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
+                            <h3 class="text-secondary mb-3">Standard</h3>
+                            <h1 class="display-4 text-white mb-0">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>99
+                                <small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Spa & Grooming</li>
+                            <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i></i><s style="color: red;">Veterinary Medicine</s></li>
+                        </ul>
+                    </div>
+                    <div class="card-footer border-0 p-0">
+                        <a href="#" class="btn btn-secondary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Premium Plan -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm text-center bg-white">
+                    <div class="card-header position-relative border-0 p-0 mb-4">
+                        <img class="card-img-top" src="/static/price-3.jpg" alt="Premium Plan">
+                        <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
+                            <h3 class="text-primary mb-3">Premium</h3>
+                            <h1 class="display-4 text-white mb-0">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>149
+                                <small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Spa & Grooming</li>
+                            <li class="list-group-item p-2" style="color: green;"><i class="fa fa-check text-secondary mr-2"></i>Veterinary Medicine</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer border-0 p-0">
+                        <a href="#" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pricing Plan End -->
+
+
+    <!-- Features Start -->
+<div class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <img class="img-fluid rounded shadow-sm" src="/static/feature.jpg" alt="Feature Image">
+        </div>
+        <div class="col-lg-6 py-4 py-lg-0 px-3 px-lg-5">
+            <h4 class="text-secondary mb-3">Why Choose Us?</h4>
+            <h1 class="display-4 mb-4"><span class="text-primary">Special Care</span> For Your Pets</h1>
+            <p class="lead mb-4">We offer unparalleled care and services for your pets, ensuring their health and happiness with our dedicated team of professionals.</p>
+            <div class="row py-2">
+                <!-- Feature Item 1 -->
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex align-items-start">
+                        <div class="feature-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mr-3">
+                            <i class="flaticon-cat"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-weight-bold mb-1">Best In Industry</h5>
+                            <p class="mb-0">Top-notch services and care standards that set us apart from the rest.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature Item 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex align-items-start">
+                        <div class="feature-icon bg-success text-white rounded-circle d-flex align-items-center justify-content-center mr-3">
+                            <i class="flaticon-doctor"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-weight-bold mb-1">Emergency Services</h5>
+                            <p class="mb-0">Round-the-clock emergency care to ensure your pet’s health is never compromised.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature Item 3 -->
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex align-items-start">
+                        <div class="feature-icon bg-warning text-white rounded-circle d-flex align-items-center justify-content-center mr-3">
+                            <i class="flaticon-care"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-weight-bold mb-1">Special Care</h5>
+                            <p class="mb-0">Tailored care plans designed to meet the unique needs of each pet.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature Item 4 -->
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex align-items-start">
+                        <div class="feature-icon bg-info text-white rounded-circle d-flex align-items-center justify-content-center mr-3">
+                            <i class="flaticon-dog"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-weight-bold mb-1">Customer Support</h5>
+                            <p class="mb-0">Friendly and responsive support to assist you with all your pet care needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Features End -->
+
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-card">
+            <p>"Best dog walking service ever!"</p>
+            <p>- Emily J.</p>
+        </div>
+        <div class="testimonial-card">
+            <p>"My cat always comes back happy and well-groomed."</p>
+            <p>- Robert B.</p>
+        </div>
+        <div class="testimonial-card">
+            <p>"Highly recommend their vet services. They saved my dog's life."</p>
+            <p>- Lisa K.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 Pet Care Services. All Rights Reserved.</p>
+        <p>Email: contact@petcare.com | Phone: (123) 456-7890</p>
+    </footer>
+</body>
+
+</html>
